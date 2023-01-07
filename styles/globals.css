@@ -1,9 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&family=Montserrat:wght@400;700&display=swap');
 html,
 body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: black;
 }
 
 a {
@@ -13,14 +19,4 @@ a {
 
 * {
   box-sizing: border-box;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
 }
