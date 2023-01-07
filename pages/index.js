@@ -14,9 +14,6 @@ export default function Home({ prices = [] }) {
     const [prompt, setPrompt] = useState("");
     const [loading, setLoading] = useState(false);
 
-    const onClickFeature = () => {
-        featureSet === false ? setFeatureSet(true) : setFeatureSet(false);
-    };
     const onSubmit = async (event) => {
         event.preventDefault();
         let message = { message: messageInput, sender: "user" };
