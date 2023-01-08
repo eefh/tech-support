@@ -5,28 +5,30 @@ import { useState } from "react";
 import Message from "../components/Message";
 import Loading from "@/components/Loading";
 import Navbar from "@/components/Navbar";
-let messages = [];
 export default function Home({ prices = [] }) {
+    const [messages, setMessages] = useState([]);
     const [subjectInput, setSubjectInput] = useState("");
     const [messageInput, setMessageInput] = useState("");
     const [featureSet, setFeatureSet] = useState(false);
     const [eduSelect, setEduSelect] = useState(null);
-    const [prevReply, setPrevReply] = useState("");
     const [prompt, setPrompt] = useState("");
     const [loading, setLoading] = useState(false);
     const [failed, setFailed] = useState(false);
 
     const onSubmit = async (event) => {
         event.preventDefault();
-        let message = { message: messageInput, sender: "user" };
-
         if ((messageInput && !loading) || failed) {
             setLoading(true);
             setFailed(false);
 
             !failed &&
-                messages.unshift({ message: messageInput, sender: "user" });
+                setMessages((messages) => [
+                    { message: messageInput, sender: "user" },
+                    ...messages,
+                ]);
+            //messages.unshift({ message: messageInput, sender: "user" });
             setMessageInput("");
+            console.log(messages.slice(0, 5));
             try {
                 const response = await fetch("/api/generate", {
                     method: "POST",
@@ -35,17 +37,20 @@ export default function Home({ prices = [] }) {
                     },
                     body: JSON.stringify({
                         reply: messageInput,
-                        prevReply: prevReply,
+                        messages: messages.slice(0, 5),
                     }),
                 });
                 const data = await response.json();
 
                 setLoading(false);
-                setPrevReply(data.result);
-                messages.unshift({
+                setMessages((messages) => [
+                    { message: data.result.replace(/["']/g, ""), sender: "" },
+                    ...messages,
+                ]);
+                /*messages.unshift({
                     message: data.result.replace(/["']/g, ""),
                     sender: "",
-                });
+                });*/
             } catch (error) {
                 console.log(error);
                 setFailed(true);

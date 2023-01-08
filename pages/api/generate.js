@@ -8,7 +8,11 @@ const openai = new OpenAIApi(configuration);
 export default async function (req, res) {
     const completion = await openai.createCompletion({
         model: "text-davinci-003",
-        prompt: generatePrompt(req.body.reply, req.body.prevReply),
+        prompt: generatePrompt(
+            req.body.reply,
+            req.body.prevReply,
+            req.body.messages
+        ),
         temperature: 0.9,
         max_tokens: 1024,
         presence_penalty: 2,
@@ -17,8 +21,11 @@ export default async function (req, res) {
     res.status(200).json({ result: completion.data.choices[0].text });
 }
 
-const generatePrompt = (reply, previous) => {
-    let prompt = `${previous} ${reply} (you are a clever tech support bot to help elderly people, respond with only the next message): `;
+const generatePrompt = (reply, previous, messages) => {
+    let prompt = `${reply} (you are a clever tech support bot to help elderly people, respond with only the next message):`;
+    messages.forEach((element) => {
+        prompt = `${element.message} ${prompt}`;
+    });
     console.log(prompt);
     return prompt;
 };
