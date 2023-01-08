@@ -78,6 +78,7 @@
   cursor: pointer;
   font-weight: bolder;
   margin-right: -12px;
+  margin-left: 12px;
 }
 .error > ion-icon {
   position: relative;
