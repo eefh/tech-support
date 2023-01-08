@@ -44,7 +44,12 @@ export default function Home({ prices = [] }) {
 
                 setLoading(false);
                 setMessages((messages) => [
-                    { message: data.result.replace(/["]/g, ""), sender: "" },
+                    {
+                        message: data.result
+                            .replace(/["]/g, "")
+                            .replace(/^\n+/, ""),
+                        sender: "",
+                    },
                     ...messages,
                 ]);
                 /*messages.unshift({

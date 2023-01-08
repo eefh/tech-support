@@ -44,6 +44,7 @@
     border-top-left-radius: 28px;
     border-top-right-radius: 28px;
     border-bottom-right-radius: 28px;
+    white-space: pre-wrap;
 }
 .error {
     background-color: rgba(231, 126, 143, 0.315);
