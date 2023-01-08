@@ -107,7 +107,7 @@ export default function Home({ prices = [] }) {
                         </div>
 
                         <div className={styles.messageBox}>
-                            {messages.length && (
+                            {messages.length ? (
                                 <div
                                     className={styles.reset}
                                     onClick={() => {
@@ -116,7 +116,7 @@ export default function Home({ prices = [] }) {
                                 >
                                     <ion-icon name="refresh-circle"></ion-icon>
                                 </div>
-                            )}
+                            ) : null}
                             <input
                                 className={styles.userText}
                                 type="text"
