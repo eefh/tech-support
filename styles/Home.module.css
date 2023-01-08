@@ -93,8 +93,7 @@
   background-color: rgba(6, 18, 27, 0);
   margin: 20px;
   width: 600px;
-  max-height: 600px;
-
+  height: 693px;
 }
 
 .chatBox {
@@ -111,7 +110,7 @@
 
 .chatBox::-webkit-scrollbar {
   background-color: rgba(156, 156, 156, 0);
-  width: 12px;
+  width: 10px;
 }
 
 .chatBox::-webkit-scrollbar-thumb {
