@@ -61,6 +61,7 @@
   margin: 20px;
   width: 600px;
   max-height: 600px;
+
 }
 
 .chatBox {
@@ -72,6 +73,7 @@
   margin: 0px;
   width: 100%;
   transition: 200ms;
+
 }
 
 .chatBox::-webkit-scrollbar {
@@ -86,7 +88,6 @@
   display: flex;
   flex-direction: column-reverse;
   margin: 20px;
-  margin-right: 0px;
 }
 
 .userText {
@@ -133,8 +134,31 @@
   justify-content: center;
   align-items: center;
 }
-
 .footer>a {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 800px){
+  .chat {
+    width: 100%;
+    margin: 0px;
+  }
+  .userText {
+    width: 100%;
+  }
+  .messages {
+    margin: 0px;
+  }
+  .subject {
+    width: 100vw;
+  }
+  .Home {
+    width: 100vw;
+    height: 100vh;
+    margin: 0px;
+    padding: 0px;
+    justify-content: center;
+    align-items: flex-end;
+  }
 }

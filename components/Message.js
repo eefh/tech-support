@@ -3,10 +3,13 @@ export default function Message(props) {
     const determineClass = () => {
         if (props.sender === "user") {
             return `${styles.messageUser} ${styles.msg}`;
-        } else {
+        } else if (props.sender === "") {
             return `${styles.messageAI} ${styles.msg}`;
+        } else {
+            return `${styles.messageAI} ${styles.msg} ${styles.error}`;
         }
     };
+    const handleClick = () => {};
     return (
         <div className={styles.message}>
             <div className={determineClass()}>

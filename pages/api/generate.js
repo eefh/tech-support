@@ -13,11 +13,12 @@ export default async function (req, res) {
         max_tokens: 1024,
         presence_penalty: 2,
     });
+    console.log(completion.data);
     res.status(200).json({ result: completion.data.choices[0].text });
 }
 
 const generatePrompt = (reply, previous) => {
-    let prompt = `'${reply}' '${previous}' you are a clever tech support bot to help elderly people, respond with only the next msessage, without quotes: `;
-
+    let prompt = `${previous} ${reply} (you are a clever tech support bot to help elderly people, respond with only the next message): `;
+    console.log(prompt);
     return prompt;
 };

@@ -1,0 +1,47 @@
+.navbar {
+    position: absolute;
+    top: 0px;
+    left: 25%;
+    width: 50%;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    padding: 20px 0px 10px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(194, 194, 194, 0.301);
+    color: white;
+    backdrop-filter: blur(10px);
+    transition: 300ms;
+}
+.subject {
+    background-color: bisque;
+}
+.group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.group > ion-icon {
+    position: relative;
+    top: 1px;
+    margin: 0px 0px 0px 4px;
+    color: rgba(255, 255, 255, 0.363)
+}
+.picture {
+    margin: 0px;
+    width: 64px;
+    height: 64px;
+    border-radius: 32px;
+    user-select: none;
+}
+
+@media only screen and (max-width: 800px) {
+    .navbar {
+        left: 0%;
+        width: 100%;
+        border-radius: 0px;
+        padding: 40px 0px 20px 0px;
+    }
+
+}

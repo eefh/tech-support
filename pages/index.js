@@ -4,6 +4,7 @@ import styles from "../styles/Home.module.css";
 import { useState } from "react";
 import Message from "../components/Message";
 import Loading from "@/components/Loading";
+import Navbar from "@/components/Navbar";
 let messages = [];
 export default function Home({ prices = [] }) {
     const [subjectInput, setSubjectInput] = useState("");
@@ -18,38 +19,42 @@ export default function Home({ prices = [] }) {
         event.preventDefault();
         let message = { message: messageInput, sender: "user" };
 
-        if (messageInput) {
+        if (messageInput && !loading) {
             setLoading(true);
             messages.unshift({ message: messageInput, sender: "user" });
             setMessageInput("");
-            const response = await fetch("/api/generate", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    reply: messageInput,
-                    prevReply: prevReply,
-                }),
-            });
-            const data = await response.json();
+            try {
+                const response = await fetch("/api/generate", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        reply: messageInput,
+                        prevReply: prevReply,
+                    }),
+                });
+                const data = await response.json();
 
-            setLoading(false);
-            setPrevReply(data.result);
-            messages.unshift({ message: data.result, sender: "" });
-        } else if (!user) {
-            messages.unshift({ message: messageInput, sender: "user" });
-            messages.unshift({ message: "Please sign in!", sender: "" });
-            setMessageInput("");
-        } else {
-            messages.unshift({ message: messageInput, sender: "user" });
-            messages.unshift({ message: "Out of tokens!", sender: "" });
-            setMessageInput("");
+                setLoading(false);
+                setPrevReply(data.result);
+                messages.unshift({
+                    message: data.result.replace(/["']/g, ""),
+                    sender: "",
+                });
+            } catch (error) {
+                console.log(error);
+                setLoading(false);
+                messages.unshift({
+                    message: "An error occured, click here to retry",
+                    sender: "error",
+                });
+            }
         }
     };
 
     return (
-        <div>
+        <div className={styles.source}>
             <Head>
                 <title>Tech Support</title>
                 <script
@@ -61,7 +66,7 @@ export default function Home({ prices = [] }) {
                     src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
                 ></script>
             </Head>
-
+            <Navbar></Navbar>
             <div className={styles.Home}>
                 <form onSubmit={onSubmit} className={styles.subject}>
                     <div className={styles.chat}>
