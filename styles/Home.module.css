@@ -170,8 +170,8 @@
   }
   .Home {
     width: 100vw;
-    height: 100vh;
     margin: 0px;
+    height: 95vh;
     padding: 0px;
     justify-content: center;
     align-items: flex-end;
