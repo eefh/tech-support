@@ -67,7 +67,7 @@ export default function Home({ prices = [] }) {
     return (
         <div className={styles.source}>
             <Head>
-                <title>Tech Support</title>
+                <title>Apo Tech Support</title>
                 <script
                     type="module"
                     src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
@@ -108,6 +108,7 @@ export default function Home({ prices = [] }) {
                                     message="Hi there, my name is Apo and I’m here to help you get comfortable with technology. Ask me any tech-related questions and I’m more than happy to help you learn. 😄"
                                     sender=""
                                 />
+                                <div className={styles.chin}></div>
                             </div>
                         </div>
 
