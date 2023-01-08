@@ -72,7 +72,8 @@ export default function Home({ prices = [] }) {
     const handleKeyPress = (event) => {
         if (event.key === "Enter") {
             event.preventDefault();
-            event.target.style.height = `auto`;
+            event.target.style.height = "auto";
+            event.target.rows = 1;
             onSubmit(event);
         }
     };
@@ -143,6 +144,7 @@ export default function Home({ prices = [] }) {
                                 value={messageInput}
                                 onInput={(e) => setMessageInput(e.target.value)}
                                 rows="1"
+                                cols="1"
                                 onChange={handleAreaInput}
                                 onKeyDown={handleKeyPress}
                                 ref={textareaRef}
