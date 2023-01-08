@@ -44,7 +44,7 @@ export default function Home({ prices = [] }) {
 
                 setLoading(false);
                 setMessages((messages) => [
-                    { message: data.result.replace(/["']/g, ""), sender: "" },
+                    { message: data.result.replace(/["]/g, ""), sender: "" },
                     ...messages,
                 ]);
                 /*messages.unshift({
@@ -85,7 +85,9 @@ export default function Home({ prices = [] }) {
                                         onClick={onSubmit}
                                         className={styles.error}
                                     >
-                                        Retry
+                                        I’m sorry, I didn’t understand that.
+                                        Click to here to retry
+                                        <ion-icon name="refresh-outline"></ion-icon>
                                     </button>
                                 )}
                                 {messages.map((msg, i) => {
@@ -98,14 +100,23 @@ export default function Home({ prices = [] }) {
                                     );
                                 })}
                                 <Message
-                                    message="How can I help you?"
+                                    message="Hi there, my name is Apo and I’m here to help you get comfortable with technology. Ask me any tech-related questions and I’m more than happy to help you learn. 😄"
                                     sender=""
                                 />
-                                <Message message="Welcome! 😄" sender="" />
                             </div>
                         </div>
 
                         <div className={styles.messageBox}>
+                            {messages.length && (
+                                <div
+                                    className={styles.reset}
+                                    onClick={() => {
+                                        setMessages([]);
+                                    }}
+                                >
+                                    <ion-icon name="refresh-circle"></ion-icon>
+                                </div>
+                            )}
                             <input
                                 className={styles.userText}
                                 type="text"

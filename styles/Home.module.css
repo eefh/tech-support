@@ -56,8 +56,8 @@
     justify-content: center;
     flex-wrap: wrap;
     margin: 4px 10px 4px 10px;
-    padding: 10px 40px 10px 40px;
-    width: 10%;
+    padding: 12px 14px 12px 14px;
+    width: fit-content;
     animation: spawn 300ms ease;
     color: white;
     -webkit-text-fill-color: rgb(255, 251, 251);
@@ -65,8 +65,25 @@
     border: none;
   margin-right: auto;
   background-color: rgba(141, 39, 39, 0.644);
-  border-radius: 28px;
+      border-top-left-radius: 28px;
+        border-top-right-radius: 28px;
+        border-bottom-right-radius: 28px;
   cursor: pointer;
+}
+.reset {
+  display: flex;
+  color: rgba(255, 255, 255, 0.397);
+  border-radius: 16px;
+  font-size: 36px;
+  cursor: pointer;
+  font-weight: bolder;
+  margin-right: -12px;
+}
+.error > ion-icon {
+  position: relative;
+  font-size: 20px;
+  top: -2px;
+  left: 4px;
 }
 .chat {
   display: flex;
