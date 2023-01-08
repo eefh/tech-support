@@ -5,8 +5,6 @@ export default function Message(props) {
             return `${styles.messageUser} ${styles.msg}`;
         } else if (props.sender === "") {
             return `${styles.messageAI} ${styles.msg}`;
-        } else {
-            return `${styles.messageAI} ${styles.msg} ${styles.error}`;
         }
     };
     const handleClick = () => {};

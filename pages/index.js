@@ -14,14 +14,18 @@ export default function Home({ prices = [] }) {
     const [prevReply, setPrevReply] = useState("");
     const [prompt, setPrompt] = useState("");
     const [loading, setLoading] = useState(false);
+    const [failed, setFailed] = useState(false);
 
     const onSubmit = async (event) => {
         event.preventDefault();
         let message = { message: messageInput, sender: "user" };
 
-        if (messageInput && !loading) {
+        if ((messageInput && !loading) || failed) {
             setLoading(true);
-            messages.unshift({ message: messageInput, sender: "user" });
+            setFailed(false);
+
+            !failed &&
+                messages.unshift({ message: messageInput, sender: "user" });
             setMessageInput("");
             try {
                 const response = await fetch("/api/generate", {
@@ -44,15 +48,12 @@ export default function Home({ prices = [] }) {
                 });
             } catch (error) {
                 console.log(error);
+                setFailed(true);
                 setLoading(false);
-                messages.unshift({
-                    message: "An error occured, click here to retry",
-                    sender: "error",
-                });
             }
         }
     };
-
+    const handleError = () => {};
     return (
         <div className={styles.source}>
             <Head>
@@ -74,6 +75,14 @@ export default function Home({ prices = [] }) {
                             {loading && <Loading />}
 
                             <div className={styles.messages}>
+                                {failed && (
+                                    <button
+                                        onClick={onSubmit}
+                                        className={styles.error}
+                                    >
+                                        Retry
+                                    </button>
+                                )}
                                 {messages.map((msg, i) => {
                                     return (
                                         <Message
