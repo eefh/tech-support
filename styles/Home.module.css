@@ -51,6 +51,9 @@
   border: solid 2px rgb(187, 230, 255);
   box-shadow: 0px 0px 20px rgba(5, 255, 151, 0.301);
 }
+.chin {
+  height: 200px;
+}
 .error {
   display: flex;
     justify-content: center;
@@ -94,7 +97,7 @@
   background-color: rgba(6, 18, 27, 0);
   margin: 20px;
   width: 600px;
-  height: 693px;
+  max-height: 95vh;
 }
 
 .chatBox {
