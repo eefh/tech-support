@@ -45,7 +45,7 @@
 }
 .submit > ion-icon {
   user-select: none;
-  font-size: 25px;
+  font-size: 24px;
 }
 .submit:hover {
   border: solid 2px rgb(187, 230, 255);

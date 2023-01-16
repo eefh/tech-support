@@ -14,6 +14,7 @@ export default function Home({ prices = [] }) {
     const [prompt, setPrompt] = useState("");
     const [loading, setLoading] = useState(false);
     const [failed, setFailed] = useState(false);
+    const [language, setLanguage] = useState("en");
     const textareaRef = useRef(null);
     const onSubmit = async (event) => {
         event.preventDefault();
@@ -28,7 +29,6 @@ export default function Home({ prices = [] }) {
                 ]);
             //messages.unshift({ message: messageInput, sender: "user" });
             setMessageInput("");
-            console.log(messages.slice(0, 5));
             try {
                 const response = await fetch("/api/generate", {
                     method: "POST",
@@ -38,6 +38,7 @@ export default function Home({ prices = [] }) {
                     body: JSON.stringify({
                         reply: messageInput,
                         messages: messages.slice(0, 5),
+                        language: language
                     }),
                 });
                 const data = await response.json();
@@ -90,7 +91,7 @@ export default function Home({ prices = [] }) {
                     src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
                 ></script>
             </Head>
-            <Navbar></Navbar>
+            <Navbar setLanguage={setLanguage} language={language}></Navbar>
             <div className={styles.Home}>
                 <form onSubmit={onSubmit} className={styles.subject}>
                     <div className={styles.chat}>
@@ -117,10 +118,20 @@ export default function Home({ prices = [] }) {
                                         />
                                     );
                                 })}
-                                <Message
-                                    message="Hi there, my name is Apo and I’m here to help you get comfortable with technology. Ask me any tech-related questions and I’m more than happy to help you learn. 😄"
-                                    sender=""
-                                />
+                                {language === "en" && (
+                                    <Message
+                                        message="Hi there, my name is Apo and I’m here to help you get comfortable with technology. Ask me any tech-related questions and I’m more than happy to help you learn. 😄"
+                                        sender=""
+                                    />
+                                )}
+                                {language === "es" && (
+                                    <Message
+                                        message="Hola, mi nombre es Apo y estoy aquí para ayudarte a que te sientas cómodo con la tecnología. Hágame cualquier pregunta relacionada con la tecnología y estaré más que feliz de ayudarlo a aprender. 😄
+"
+                                        sender=""
+                                    />
+                                )}
+
                                 <div className={styles.chin}></div>
                             </div>
                         </div>
