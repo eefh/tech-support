@@ -150,7 +150,7 @@ export default function Home({ prices = [] }) {
                             <textarea
                                 className={styles.userText}
                                 type="text"
-                                placeholder="Message"
+                                placeholder="Type your question here"
                                 required
                                 value={messageInput}
                                 onInput={(e) => setMessageInput(e.target.value)}
