@@ -1,18 +1,12 @@
 .navbar {
-    position: absolute;
-    top: 0px;
-    left: 25%;
-    width: 50%;
-    border-bottom-left-radius: 40px;
-    border-bottom-right-radius: 40px;
     padding: 20px 0px 10px 0px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgba(194, 194, 194, 0.301);
-    color: white;
+    color: rgb(0, 0, 0);
     backdrop-filter: blur(10px);
     transition: 300ms;
+    font-size: 20px;
 }
 .language {
     font-size: 14px;
@@ -47,16 +41,14 @@
 .subject {
     background-color: bisque;
 }
+.description {
+    margin: -20px;
+}
 .group {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-.group > ion-icon {
-    position: relative;
-    top: 1px;
-    margin: 0px 0px 0px 4px;
-    color: rgba(255, 255, 255, 0.363)
 }
 .picture {
     margin: 0px;

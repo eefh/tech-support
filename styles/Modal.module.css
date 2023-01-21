@@ -1,0 +1,41 @@
+.modalBackground {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99;
+    top: 0px;
+    left: 0px;
+    backdrop-filter: blur(2px);
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(192, 192, 192, 0.342);
+}
+.exit {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 28px;
+    margin: 10px;
+
+} .exit > ion-icon{
+        cursor: pointer;
+}
+.modalContent {
+        padding: 64px 96px 64px 96px;
+}
+.languages > p {
+    user-select: none;
+    cursor: pointer;
+}
+.selected {
+    color: green;
+}
+.modal {
+    background-color: white;
+    border-radius: 8px;
+}
+
+.modalContent > p {
+    user-select: none;
+    cursor: pointer;
+}

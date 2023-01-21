@@ -5,6 +5,8 @@ import { useState, useRef } from "react";
 import Message from "../components/Message";
 import Loading from "@/components/Loading";
 import Navbar from "@/components/Navbar";
+import Tutorial from "@/components/Tutorial";
+import Settings from "@/components/Settings";
 export default function Home({ prices = [] }) {
     const [messages, setMessages] = useState([]);
     const [subjectInput, setSubjectInput] = useState("");
@@ -14,7 +16,9 @@ export default function Home({ prices = [] }) {
     const [prompt, setPrompt] = useState("");
     const [loading, setLoading] = useState(false);
     const [failed, setFailed] = useState(false);
+    const [tutorial, setTutorial ] = useState(false);
     const [language, setLanguage] = useState("en");
+    const [settings, setSettings] = useState(false);
     const textareaRef = useRef(null);
     const onSubmit = async (event) => {
         event.preventDefault();
@@ -95,46 +99,54 @@ export default function Home({ prices = [] }) {
             <div className={styles.Home}>
                 <form onSubmit={onSubmit} className={styles.subject}>
                     <div className={styles.chat}>
-                        <div className={styles.chatBox}>
-                            {loading && <Loading />}
-
-                            <div className={styles.messages}>
-                                {failed && (
-                                    <button
-                                        onClick={onSubmit}
-                                        className={styles.error}
-                                    >
-                                        I’m sorry, I didn’t understand that.
-                                        Click to here to retry
-                                        <ion-icon name="refresh-outline"></ion-icon>
-                                    </button>
-                                )}
-                                {messages.map((msg, i) => {
-                                    return (
-                                        <Message
-                                            message={msg.message}
-                                            sender={msg.sender}
-                                            key={i}
-                                        />
-                                    );
-                                })}
-                                {language === "en" && (
-                                    <Message
-                                        message="Hi there, my name is Apo and I’m here to help you get comfortable with technology. Ask me any tech-related questions and I’m more than happy to help you learn. 😄"
-                                        sender=""
-                                    />
-                                )}
-                                {language === "es" && (
-                                    <Message
-                                        message="Hola, mi nombre es Apo y estoy aquí para ayudarte a que te sientas cómodo con la tecnología. Hágame cualquier pregunta relacionada con la tecnología y estaré más que feliz de ayudarlo a aprender. 😄
-"
-                                        sender=""
-                                    />
-                                )}
-
-                                <div className={styles.chin}></div>
+                        {settings && 
+                            <Settings setLanguage={setLanguage} language={language}setSettings={setSettings}></Settings>
+                        }
+                        {tutorial && 
+                            <Tutorial setTutorial={setTutorial}></Tutorial>
+                        }
+                        {messages.length > 0 && (
+                            <div className={styles.buttons}>
+                                <div className={`${styles.optionButton} ${styles.grey}`} onClick={() => setSettings(true)}>
+                                    SETTINGS
+                                </div>
+                                <div className={`${styles.optionButton} ${styles.green}`} onClick={() => setTutorial(true)}>
+                                    HOW IT WORKS
+                                </div>
+                                <div className={`${styles.optionButton} ${styles.red}`} onClick={() => setMessages([])}>
+                                    START OVER
+                                </div>
                             </div>
-                        </div>
+                        )}
+                        {messages.length > 0 && (
+                            <div className={styles.chatBox}>
+                                {loading && <Loading />}
+
+                                <div className={styles.messages}>
+                                    {failed && (
+                                        <button
+                                            onClick={onSubmit}
+                                            className={styles.error}
+                                        >
+                                            I’m sorry, I didn’t understand that.
+                                            Click to here to retry
+                                            <ion-icon name="refresh-outline"></ion-icon>
+                                        </button>
+                                    )}
+                                    {messages.map((msg, i) => {
+                                        return (
+                                            <Message
+                                                message={msg.message}
+                                                sender={msg.sender}
+                                                key={i}
+                                            />
+                                        );
+                                    })}
+
+                                    <div className={styles.chin}></div>
+                                </div>
+                            </div>
+                        )}
 
                         <div className={styles.messageBox}>
                             {messages.length ? (
@@ -160,11 +172,10 @@ export default function Home({ prices = [] }) {
                                 onKeyDown={handleKeyPress}
                                 ref={textareaRef}
                             ></textarea>
-                            {messageInput && (
-                                <button className={styles.submit} type="submit">
-                                    <ion-icon name="arrow-up-outline"></ion-icon>
-                                </button>
-                            )}
+
+                            <button className={styles.submit} type="submit">
+                                ASK
+                            </button>
                         </div>
                     </div>
                 </form>

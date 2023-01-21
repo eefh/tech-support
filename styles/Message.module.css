@@ -32,18 +32,18 @@
 .messageUser {
 
     margin-left: auto;
-    background-color: rgb(0, 118, 252);
-    border-top-left-radius: 28px;
-    border-top-right-radius: 28px;
-    border-bottom-left-radius: 28px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 14px;
+    color: black;
+    -webkit-text-fill-color: rgb(0, 0, 0);
+    border-bottom: solid 3px rgba(0, 0, 0, 0.219);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.151);
 }
 
 .messageAI {
     margin-right: auto;
-    background-color: rgba(44, 47, 49, 0.925);
-    border-top-left-radius: 28px;
-    border-top-right-radius: 28px;
-    border-bottom-right-radius: 28px;
+    background-color: rgba(0, 136, 7, 0.925);
+    border-radius: 14px;
     white-space: pre-wrap;
 }
 .error {
